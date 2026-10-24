@@ -25,7 +25,6 @@ export default function Contact() {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    watch,
   } = useForm({ resolver: zodResolver(schema) });
 
   // const nameValue = watch('name', '');

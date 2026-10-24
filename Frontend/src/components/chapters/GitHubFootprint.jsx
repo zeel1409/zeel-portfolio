@@ -72,7 +72,7 @@ function RepoCard({ repo }) {
 }
 
 export default function GitHubFootprint() {
-  const { stats, repos, loading, error } = useGitHubStats('zeel1409');
+  const { stats, repos, loading } = useGitHubStats('zeel1409');
 
   return (
     <section id="github" className="relative py-28 px-6 overflow-hidden">

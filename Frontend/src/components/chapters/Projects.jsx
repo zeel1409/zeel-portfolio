@@ -5,7 +5,7 @@ import { projects } from '../../data/portfolio';
 import { ExternalLink, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 
-function ProjectCard({ project, isActive }) {
+function ProjectCard({ project }) {
   return (
     <motion.div
       className="w-full"

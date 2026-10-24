@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { ChapterLabel, FadeUp, StaggerChildren, StaggerItem } from '../ui/AnimatedSection';
 import { Code2, Lightbulb, Rocket, BookOpen } from 'lucide-react';
 
