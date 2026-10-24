@@ -1,9 +1,9 @@
 const Contact = require('../models/Contact');
 const nodemailer = require('nodemailer');
 
-// @desc   Submit contact form
-// @route  POST /api/contact
-// @access Public
+//   Submit contact form
+//   POST /api/contact
+// Public
 const submitContact = async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
@@ -71,9 +71,9 @@ const submitContact = async (req, res) => {
   }
 };
 
-// @desc   Get all contacts (admin)
-// @route  GET /api/contact
-// @access Private (no auth yet — for local use)
+//   Get all contacts (admin)
+// GET /api/contact
+//  (no auth yet — for local use)
 const getContacts = async (req, res) => {
   try {
     const contacts = await Contact.find().sort({ createdAt: -1 });
