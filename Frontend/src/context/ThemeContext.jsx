@@ -14,7 +14,10 @@ export const ThemeProvider = ({ children }) => {
     const root = document.documentElement;
     root.classList.remove('dark', 'light');
     root.classList.add(theme);
+    root.style.colorScheme = theme;
     localStorage.setItem('portfolio-theme', theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#eef2f7' : '#030712');
   }, [theme]);
 
   const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));

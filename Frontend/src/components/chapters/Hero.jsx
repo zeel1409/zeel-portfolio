@@ -97,7 +97,7 @@ function DevOrb() {
         <div className="font-mono text-xs text-neon-indigo/70">full-stack.dev</div>
         <div className="flex gap-1">
           {['react', 'node', 'mongo'].map((t) => (
-            <span key={t} className="text-xs font-mono text-slate-600 bg-white/5 px-1 rounded">
+            <span key={t} className="text-xs font-mono text-slate-500 dark:text-slate-600 bg-indigo-50 dark:bg-white/5 px-1 rounded">
               {t}
             </span>
           ))}
@@ -168,7 +168,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
           >
-            <span className="text-slate-100">Hi, I'm </span>
+            <span className="text-slate-900 dark:text-slate-100">Hi, I'm </span>
             <span className="gradient-text"> Zeel</span>
             <motion.span
               className="inline-block cursor-pointer"
@@ -198,7 +198,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="text-2xl md:text-3xl font-display font-semibold text-slate-300 mb-4"
+            className="text-2xl md:text-3xl font-display font-semibold text-slate-700 dark:text-slate-300 mb-4"
           >
             <TypeAnimation
               sequence={[

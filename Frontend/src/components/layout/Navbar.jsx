@@ -47,10 +47,10 @@ export default function Navbar() {
             className="flex items-center gap-2 group"
             aria-label="Go to top"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-indigo to-neon-violet flex items-center justify-center text-white text-sm font-bold font-mono shadow-glow-sm">
+            <div className="keep-white w-8 h-8 rounded-lg bg-gradient-to-br from-neon-indigo to-neon-violet flex items-center justify-center text-white text-sm font-bold font-mono shadow-glow-sm">
               Z
             </div>
-            <span className="font-display font-semibold text-sm text-slate-200 dark:text-slate-200 group-hover:text-neon-indigo transition-colors">
+            <span className="font-display font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-neon-indigo transition-colors">
               zeel.dev
             </span>
           </button>
@@ -61,7 +61,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <button
                   onClick={() => handleNav(link.href)}
-                  className="px-4 py-2 text-sm text-slate-400 hover:text-white dark:text-slate-400 dark:hover:text-white transition-colors rounded-lg hover:bg-white/5 font-medium"
+                  className="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors rounded-lg hover:bg-indigo-50 dark:hover:bg-white/5 font-medium"
                 >
                   {link.label}
                 </button>
@@ -73,7 +73,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 hover:bg-white/10 text-slate-400 hover:text-white"
+              className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 bg-white/80 dark:bg-transparent border border-slate-200 dark:border-transparent text-indigo-600 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/10 shadow-sm dark:shadow-none"
               aria-label="Toggle theme"
               id="theme-toggle"
             >
@@ -102,7 +102,7 @@ export default function Navbar() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all"
+              className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/10 transition-all"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -126,7 +126,7 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className="text-left px-4 py-3 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all font-medium"
+                  className="text-left px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/5 rounded-lg transition-all font-medium"
                 >
                   {link.label}
                 </button>

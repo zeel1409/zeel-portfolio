@@ -18,7 +18,7 @@ import Contact from './components/chapters/Contact';
 function ChapterDivider() {
   return (
     <div className="max-w-6xl mx-auto px-6">
-      <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="chapter-divider h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
     </div>
   );
 }

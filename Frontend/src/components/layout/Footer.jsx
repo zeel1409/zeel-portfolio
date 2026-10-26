@@ -13,10 +13,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
           <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-neon-indigo to-neon-violet flex items-center justify-center text-white text-xs font-bold font-mono">
+            <div className="keep-white w-7 h-7 rounded-lg bg-gradient-to-br from-neon-indigo to-neon-violet flex items-center justify-center text-white text-xs font-bold font-mono">
               Z
             </div>
-            <span className="font-display font-semibold text-sm text-slate-200">zeel.dev</span>
+            <span className="font-display font-semibold text-sm text-slate-800 dark:text-slate-200">zeel.dev</span>
           </div>
           <p className="text-xs text-slate-500 font-mono">
             Designed &amp; built by Zeel — 2025
@@ -34,7 +34,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 hover:text-white hover:bg-white/10 transition-all duration-200"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-500 hover:text-indigo-600 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/10 transition-all duration-200"
             >
               <Icon size={16} />
             </a>

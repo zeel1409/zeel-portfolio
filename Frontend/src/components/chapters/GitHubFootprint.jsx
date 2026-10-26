@@ -15,7 +15,7 @@ const LANG_COLORS = {
 function StatCard({ icon: Icon, label, value, color = 'text-neon-indigo' }) {
   return (
     <div className="glass-card rounded-2xl p-5 flex items-center gap-4">
-      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
+      <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-white/5 flex items-center justify-center">
         <Icon size={18} className={color} />
       </div>
       <div>

@@ -99,8 +99,8 @@ export default function Skills() {
                   onClick={() => setActiveCategory(cat.key)}
                   className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     activeCategory === cat.key
-                      ? 'bg-white/10 text-white'
-                      : 'text-slate-500 hover:text-slate-300'
+                      ? 'keep-white bg-indigo-600 text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'
                   }`}
                   id={`skills-tab-${cat.key}`}
                 >
@@ -140,7 +140,7 @@ export default function Skills() {
               {['Passport.js', 'Cloudinary', 'Mapbox', 'Bootstrap', 'Multer', 'REST APIs', 'Mongoose', 'Vite', 'Figma', 'Postman'].map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1.5 rounded-lg text-xs font-mono text-slate-500 border border-white/5 hover:border-neon-indigo/30 hover:text-slate-300 transition-all duration-200 cursor-default"
+                  className="px-3 py-1.5 rounded-lg text-xs font-mono text-slate-500 border border-slate-200 dark:border-white/5 hover:border-neon-indigo/30 hover:text-slate-800 dark:hover:text-slate-300 transition-all duration-200 cursor-default"
                 >
                   {tech}
                 </span>

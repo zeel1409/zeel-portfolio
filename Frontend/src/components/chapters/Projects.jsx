@@ -192,7 +192,7 @@ export default function Projects() {
               <div className="flex gap-2">
                 <button
                   onClick={prev}
-                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-400 hover:text-white hover:border-neon-indigo/30 transition-all"
+                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-500 hover:text-indigo-600 dark:hover:text-white hover:border-neon-indigo/30 transition-all"
                   aria-label="Previous project"
                   id="project-prev"
                 >
@@ -200,7 +200,7 @@ export default function Projects() {
                 </button>
                 <button
                   onClick={next}
-                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-400 hover:text-white hover:border-neon-indigo/30 transition-all"
+                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-500 hover:text-indigo-600 dark:hover:text-white hover:border-neon-indigo/30 transition-all"
                   aria-label="Next project"
                   id="project-next"
                 >
