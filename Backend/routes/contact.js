@@ -5,6 +5,9 @@ const validate = require('../middleware/validate');
 
 const router = express.Router();
 
+
+//  this code is for the contact form which is used to collect the user information and send it to the database
+
 const contactValidation = [
   body('name')
     .trim()
