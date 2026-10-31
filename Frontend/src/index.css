@@ -158,7 +158,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Section chapter numbering ────────────────────────────────── */
 .chapter-number {
-  @apply font-mono text-sm text-neon-indigo/50 tracking-widest uppercase;
+  @apply font-mono text-xs sm:text-sm text-indigo-400 tracking-widest uppercase font-semibold;
 }
 
 /* ─── Focus ring ────────────────────────────────────────────────── */
@@ -183,30 +183,30 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary {
   @apply relative inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl overflow-hidden transition-all duration-300;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f1f5f9;
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(99, 102, 241, 0.5);
   transform: translateY(-1px);
 }
 
 /* ─── Input styles ──────────────────────────────────────────────── */
 .form-input {
   @apply w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 outline-none;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
 }
 .form-input::placeholder {
-  color: rgba(148, 163, 184, 0.5);
+  color: #94a3b8;
 }
 .form-input:focus {
-  background: rgba(99, 102, 241, 0.05);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 /* ─── Progress bar ──────────────────────────────────────────────── */
@@ -227,13 +227,6 @@ h1, h2, h3, h4, h5, h6 {
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-@media (max-width: 768px) {
-  #story, #skills, #projects, #github, #experience, #contact, footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 800px;
-  }
 }
 
 /* ─── Mobile responsiveness ─────────────────────────────────────── */

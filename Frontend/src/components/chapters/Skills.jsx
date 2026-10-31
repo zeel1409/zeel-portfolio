@@ -1,150 +1,183 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChapterLabel, FadeUp, StaggerChildren, StaggerItem } from '../ui/AnimatedSection';
 import { skills } from '../../data/portfolio';
+import { Layers, Server, Wrench } from 'lucide-react';
 
-const categories = [
-  { key: 'frontend', label: 'Frontend', color: '#6366f1' },
-  { key: 'backend', label: 'Backend', color: '#06b6d4' },
-  { key: 'tools', label: 'Tools & More', color: '#8b5cf6' },
-];
-
-function SkillCard({ skill, index, color }) {
-  const [hovered, setHovered] = useState(false);
+function SkillCard({ skill, accentColor = 'indigo' }) {
+  const colorStyles = {
+    indigo: {
+      badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
+      hoverBorder: 'hover:border-indigo-500/40',
+      accentDot: 'bg-indigo-400',
+    },
+    cyan: {
+      badge: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+      hoverBorder: 'hover:border-cyan-500/40',
+      accentDot: 'bg-cyan-400',
+    },
+    violet: {
+      badge: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
+      hoverBorder: 'hover:border-purple-500/40',
+      accentDot: 'bg-purple-400',
+    },
+  }[accentColor] || {
+    badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
+    hoverBorder: 'hover:border-indigo-500/40',
+    accentDot: 'bg-indigo-400',
+  };
 
   return (
     <motion.div
-      className="glass-card rounded-2xl p-5 cursor-default relative overflow-hidden group"
-      whileHover={{ y: -4, scale: 1.02 }}
+      className={`glass-card rounded-2xl p-5 border border-white/10 ${colorStyles.hoverBorder} transition-all duration-300 flex flex-col justify-between group shadow-sm`}
+      whileHover={{ y: -3 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
     >
-      {/* Hover accent line */}
-      <motion.div
-        className="absolute inset-x-0 bottom-0 h-0.5 rounded-full"
-        style={{ background: color }}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: hovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{skill.icon}</span>
-          <div>
-            <h3 className="font-display font-semibold text-white text-sm">{skill.name}</h3>
-            <AnimatePresence>
-              {hovered && (
-                <motion.p
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="text-xs text-slate-500 leading-relaxed mt-1"
-                >
-                  {skill.desc}
-                </motion.p>
-              )}
-            </AnimatePresence>
+      <div>
+        <div className="flex items-start justify-between gap-3 mb-2.5">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl p-1.5 rounded-xl bg-white/[0.04] border border-white/5 shrink-0">{skill.icon}</span>
+            <div>
+              <h4 className="font-display font-bold text-white text-base group-hover:text-neon-indigo transition-colors">
+                {skill.name}
+              </h4>
+              <span className={`inline-block mt-0.5 px-2 py-0.5 rounded-full text-[11px] font-mono font-medium border ${colorStyles.badge}`}>
+                {skill.level}
+              </span>
+            </div>
           </div>
+          <span className="text-[11px] font-mono text-slate-300 bg-white/[0.06] border border-white/10 px-2.5 py-1 rounded-md shrink-0">
+            {skill.badge}
+          </span>
         </div>
-        <span className="font-mono text-xs text-slate-600">{skill.level}%</span>
-      </div>
 
-      {/* Skill bar */}
-      <div className="skill-bar">
-        <motion.div
-          className="skill-bar-fill"
-          style={{ background: `linear-gradient(90deg, ${color}aa, ${color})` }}
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: skill.level / 100 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-        />
+        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mt-2">
+          {skill.desc}
+        </p>
       </div>
     </motion.div>
   );
 }
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState('frontend');
-
-  const active = categories.find((c) => c.key === activeCategory);
-
   return (
     <section id="skills" className="relative py-28 px-6 overflow-hidden">
-      {/* Background */}
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-5 blur-3xl bg-neon-cyan pointer-events-none" />
+      {/* Background radial glows */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full opacity-10 blur-3xl bg-neon-indigo pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full opacity-10 blur-3xl bg-neon-cyan pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
         <FadeUp>
           <ChapterLabel number="03" label="My Arsenal" />
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight">
-                Tools I{' '}
-                <span className="gradient-text">actually use.</span>
-              </h2>
-              <p className="text-slate-500 mt-3 max-w-xl">
-                Not a skills dump — these are the technologies I've shipped real products with.
-                Hover each card to see what I've built with it.
-              </p>
-            </div>
-
-            {/* Category tabs */}
-            <div className="flex gap-2 p-1 glass-card rounded-xl shrink-0">
-              {categories.map((cat) => (
-                <button
-                  key={cat.key}
-                  onClick={() => setActiveCategory(cat.key)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    activeCategory === cat.key
-                      ? 'keep-white bg-indigo-600 text-white shadow-sm'
-                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'
-                  }`}
-                  id={`skills-tab-${cat.key}`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
+          <div className="mb-14">
+            <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight">
+              Tools I <span className="gradient-text">actually use.</span>
+            </h2>
+            <p className="text-slate-300 text-base md:text-lg mt-3 max-w-2xl leading-relaxed">
+              Not arbitrary percentages — these are real production technologies I build with daily across the MERN stack.
+            </p>
           </div>
         </FadeUp>
 
-        {/* Skills grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" stagger={0.06}>
-              {skills[activeCategory].map((skill, i) => (
+        {/* Both Frontend and Backend visible at once */}
+        <div className="grid lg:grid-cols-2 gap-8 items-start mb-12">
+          {/* Frontend Section */}
+          <FadeUp delay={0.1}>
+            <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/40 h-full">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+                    <Layers size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-xl text-white">Frontend Architecture</h3>
+                    <p className="text-xs font-mono text-indigo-300">Client-Side & Interactive UIs</p>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                  {skills.frontend.length} Technologies
+                </span>
+              </div>
+
+              <StaggerChildren className="grid sm:grid-cols-2 gap-4" stagger={0.06}>
+                {skills.frontend.map((skill) => (
+                  <StaggerItem key={skill.name}>
+                    <SkillCard skill={skill} accentColor="indigo" />
+                  </StaggerItem>
+                ))}
+              </StaggerChildren>
+            </div>
+          </FadeUp>
+
+          {/* Backend Section */}
+          <FadeUp delay={0.2}>
+            <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/40 h-full">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
+                    <Server size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-xl text-white">Backend & Database</h3>
+                    <p className="text-xs font-mono text-cyan-300">Server, REST APIs & Modeling</p>
+                  </div>
+                </div>
+                <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                  {skills.backend.length} Technologies
+                </span>
+              </div>
+
+              <StaggerChildren className="grid sm:grid-cols-2 gap-4" stagger={0.06}>
+                {skills.backend.map((skill) => (
+                  <StaggerItem key={skill.name}>
+                    <SkillCard skill={skill} accentColor="cyan" />
+                  </StaggerItem>
+                ))}
+              </StaggerChildren>
+            </div>
+          </FadeUp>
+        </div>
+
+        {/* Tools & Workflow Section */}
+        <FadeUp delay={0.3}>
+          <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/30">
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
+                  <Wrench size={20} />
+                </div>
+                <div>
+                  <h3 className="font-display font-bold text-xl text-white">Tools & Engineering Workflow</h3>
+                  <p className="text-xs font-mono text-purple-300">Version Control, Media CDN & Testing</p>
+                </div>
+              </div>
+              <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                {skills.tools.length} Tools
+              </span>
+            </div>
+
+            <StaggerChildren className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" stagger={0.05}>
+              {skills.tools.map((skill) => (
                 <StaggerItem key={skill.name}>
-                  <SkillCard skill={skill} index={i} color={active.color} />
+                  <SkillCard skill={skill} accentColor="violet" />
                 </StaggerItem>
               ))}
             </StaggerChildren>
-          </motion.div>
-        </AnimatePresence>
 
-        {/* Tech stack strip */}
-        <FadeUp delay={0.3}>
-          <div className="mt-16 pt-8 border-t border-white/5">
-            <p className="text-xs font-mono text-slate-600 text-center mb-6 uppercase tracking-widest">
-              Also familiar with
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {['Passport.js', 'Cloudinary', 'Mapbox', 'Bootstrap', 'Multer', 'REST APIs', 'Mongoose', 'Vite', 'Figma', 'Postman'].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 rounded-lg text-xs font-mono text-slate-500 border border-slate-200 dark:border-white/5 hover:border-neon-indigo/30 hover:text-slate-800 dark:hover:text-slate-300 transition-all duration-200 cursor-default"
-                >
-                  {tech}
-                </span>
-              ))}
+            {/* Also familiar with chip strip */}
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+              <span className="text-xs font-mono text-slate-300 font-medium uppercase tracking-wider">
+                Also familiar with:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {['Passport.js', 'Cloudinary CDN', 'Mapbox GL', 'Bootstrap', 'Multer', 'RESTful Design', 'Mongoose ODM', 'Vite', 'Figma', 'Postman'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 rounded-lg text-xs font-mono text-slate-200 bg-white/[0.04] border border-white/10 hover:border-indigo-400/40 hover:text-white transition-all cursor-default"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </FadeUp>

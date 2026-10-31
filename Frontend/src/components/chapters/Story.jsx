@@ -68,12 +68,12 @@ export default function Story() {
                 Not just a developer.{' '}
                 <span className="gradient-text">A builder.</span>
               </h2>
-              <p className="text-slate-400 text-lg leading-relaxed mb-4">
+              <p className="text-slate-200 text-lg leading-relaxed mb-4">
                 I'm Zeel — a Full Stack Developer who finds genuine joy in the process of building.
                 Not just in the finished product, but in the architecture decisions, the debugging sessions,
                 and the moment when something finally clicks.
               </p>
-              <p className="text-slate-500 leading-relaxed mb-10">
+              <p className="text-slate-300 leading-relaxed mb-10 text-base">
                 My stack is the MERN ecosystem, but my real skill is thinking in systems.
                 How does the frontend need to feel? What does the API contract look like?
                 How does the database schema affect query performance? I think in full stack.
@@ -87,14 +87,14 @@ export default function Story() {
                   <div className="flex gap-4 group">
                     {/* Timeline connector */}
                     <div className="flex flex-col items-center">
-                      <div className="w-3 h-3 rounded-full border-2 border-neon-indigo/50 bg-void group-hover:border-neon-indigo group-hover:bg-neon-indigo transition-all duration-300 mt-1.5 shrink-0" />
+                      <div className="w-3.5 h-3.5 rounded-full border-2 border-indigo-400 bg-void group-hover:border-neon-indigo group-hover:bg-neon-indigo transition-all duration-300 mt-1.5 shrink-0 shadow-sm" />
                       {i < storyBeats.length - 1 && (
-                        <div className="w-px flex-1 bg-gradient-to-b from-neon-indigo/20 to-transparent my-2" />
+                        <div className="w-px flex-1 bg-gradient-to-b from-indigo-500/30 to-transparent my-2" />
                       )}
                     </div>
                     <div className="pb-8">
-                      <div className="font-mono text-xs text-neon-indigo/60 mb-1 uppercase tracking-widest">{beat.year}</div>
-                      <p className="text-slate-400 leading-relaxed">{beat.text}</p>
+                      <div className="font-mono text-xs sm:text-sm text-indigo-300 mb-1.5 uppercase tracking-widest font-semibold">{beat.year}</div>
+                      <p className="text-slate-200 text-sm sm:text-base leading-relaxed">{beat.text}</p>
                     </div>
                   </div>
                 </FadeUp>
@@ -122,8 +122,8 @@ export default function Story() {
                         <Icon size={18} className={trait.color} />
                       </div>
                       <div>
-                        <h3 className="font-display font-semibold text-white text-sm mb-1">{trait.title}</h3>
-                        <p className="text-slate-500 text-sm leading-relaxed">{trait.desc}</p>
+                        <h3 className="font-display font-semibold text-white text-base mb-1">{trait.title}</h3>
+                        <p className="text-slate-300 text-sm leading-relaxed">{trait.desc}</p>
                       </div>
                     </div>
                   </StaggerItem>
@@ -133,9 +133,9 @@ export default function Story() {
 
             {/* Fun developer fact */}
             <FadeUp delay={0.5}>
-              <div className="mt-6 p-4 rounded-xl border border-white/5 bg-white/2">
-                <div className="font-mono text-xs text-slate-600 mb-2">// fun_fact.json</div>
-                <div className="font-mono text-sm text-slate-400">
+              <div className="mt-6 p-5 rounded-2xl border border-white/10 bg-white/[0.03]">
+                <div className="font-mono text-xs text-indigo-300 font-semibold mb-2.5">// fun_fact.json</div>
+                <div className="font-mono text-xs sm:text-sm text-slate-200 leading-relaxed">
                   <span className="text-neon-violet">{`{`}</span>
                   <br />
                   <span className="ml-4 text-neon-cyan">"languages"</span>

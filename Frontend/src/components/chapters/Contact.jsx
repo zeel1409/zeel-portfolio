@@ -71,12 +71,13 @@ export default function Contact() {
                 Let's build{' '}
                 <span className="gradient-text">something great.</span>
               </h2>
-              <p className="text-slate-400 text-lg leading-relaxed mb-4">
-                Whether you have a project in mind, an opportunity to share, or just want to say hi —
+              <p className="text-slate-200 text-base md:text-lg leading-relaxed mb-4">
+                Whether you have a project in mind, an opportunity to share, or just want to connect —
                 my inbox is always open.
               </p>
-              <p className="text-slate-500 leading-relaxed mb-10">
-                I typically respond within 24 hours.
+              <p className="text-indigo-300 font-mono text-sm leading-relaxed mb-10 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 inline-block animate-pulse" />
+                Typically respond within 24 hours.
               </p>
             </FadeUp>
 
@@ -89,14 +90,14 @@ export default function Contact() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 glass-card glass-card-hover rounded-xl group"
+                    className="flex items-center gap-4 p-4 glass-card rounded-xl group border border-white/10 hover:border-indigo-500/40 transition-all duration-300"
                   >
-                    <span className="text-xl w-10 text-center">{link.icon}</span>
+                    <span className="text-2xl w-10 text-center">{link.icon}</span>
                     <div>
-                      <div className="text-sm font-semibold text-white group-hover:text-neon-indigo transition-colors">
+                      <div className="text-base font-semibold text-white group-hover:text-neon-indigo transition-colors">
                         {link.label}
                       </div>
-                      <div className="text-xs font-mono text-slate-500">{link.handle}</div>
+                      <div className="text-xs sm:text-sm font-mono text-slate-300">{link.handle}</div>
                     </div>
                   </a>
                 ))}
@@ -105,9 +106,9 @@ export default function Contact() {
 
             {/* Fun note */}
             <FadeUp delay={0.3}>
-              <div className="mt-8 p-4 rounded-xl border border-white/5 bg-white/2">
-                <div className="font-mono text-xs text-slate-600">
-                  // If you made it this far and haven't tried<br />
+              <div className="mt-8 p-4 rounded-xl border border-white/10 bg-white/[0.03]">
+                <div className="font-mono text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  // Tip: If you made it this far and haven't tried<br />
                   // the Konami code yet... you're missing out. 🎮
                 </div>
               </div>
@@ -116,8 +117,8 @@ export default function Contact() {
 
           {/* Right: form */}
           <FadeUp delay={0.15}>
-            <div className="glass-card rounded-2xl p-8">
-              <h3 className="font-display font-bold text-white mb-6">Send a Message</h3>
+            <div className="glass-card rounded-2xl p-7 sm:p-8 border border-white/10 shadow-lg">
+              <h3 className="font-display font-bold text-2xl text-white mb-6">Send a Message</h3>
 
               <AnimatePresence mode="wait">
                 {submitStatus === 'success' && (
@@ -126,12 +127,12 @@ export default function Contact() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/20 mb-6"
+                    className="flex items-center gap-3 p-4 rounded-xl bg-green-500/15 border border-green-500/30 mb-6"
                   >
-                    <CheckCircle size={18} className="text-green-400 shrink-0" />
+                    <CheckCircle size={20} className="text-green-400 shrink-0" />
                     <div>
-                      <p className="text-sm font-semibold text-green-400">Message sent!</p>
-                      <p className="text-xs text-slate-400 mt-0.5">I'll get back to you within 24 hours.</p>
+                      <p className="text-sm font-semibold text-green-300">Message sent!</p>
+                      <p className="text-xs text-slate-200 mt-0.5">I'll get back to you within 24 hours.</p>
                     </div>
                   </motion.div>
                 )}
@@ -141,84 +142,84 @@ export default function Contact() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 mb-6"
+                    className="flex items-center gap-3 p-4 rounded-xl bg-red-500/15 border border-red-500/30 mb-6"
                   >
-                    <AlertCircle size={18} className="text-red-400 shrink-0" />
+                    <AlertCircle size={20} className="text-red-400 shrink-0" />
                     <div>
-                      <p className="text-sm font-semibold text-red-400">Something went wrong</p>
-                      <p className="text-xs text-slate-400 mt-0.5">Please try again or email me directly.</p>
+                      <p className="text-sm font-semibold text-red-300">Something went wrong</p>
+                      <p className="text-xs text-slate-200 mt-0.5">Please try again or email me directly.</p>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label htmlFor="contact-name" className="block text-xs font-mono text-slate-500 mb-1.5">
-                    <User size={12} className="inline mr-1" />name
+                  <label htmlFor="contact-name" className="block text-xs sm:text-sm font-mono text-slate-200 mb-2 font-medium">
+                    <User size={13} className="inline mr-1.5 text-indigo-400" />Your Name
                   </label>
                   <input
                     id="contact-name"
                     type="text"
-                    placeholder="Your name"
-                    className={`form-input ${errors.name ? 'border-red-500/50' : ''}`}
+                    placeholder="Zeel Kadiya"
+                    className={`form-input ${errors.name ? 'border-red-500/60' : ''}`}
                     {...register('name')}
                     onChange={(e) => { register('name').onChange(e); handleNameChange(e); }}
                   />
                   {errors.name && (
-                    <p className="text-xs text-red-400 mt-1 font-mono">{errors.name.message}</p>
+                    <p className="text-xs text-red-300 mt-1.5 font-mono">{errors.name.message}</p>
                   )}
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="contact-email" className="block text-xs font-mono text-slate-500 mb-1.5">
-                    <Mail size={12} className="inline mr-1" />email
+                  <label htmlFor="contact-email" className="block text-xs sm:text-sm font-mono text-slate-200 mb-2 font-medium">
+                    <Mail size={13} className="inline mr-1.5 text-indigo-400" />Email Address
                   </label>
                   <input
                     id="contact-email"
                     type="email"
                     placeholder="you@example.com"
-                    className={`form-input ${errors.email ? 'border-red-500/50' : ''}`}
+                    className={`form-input ${errors.email ? 'border-red-500/60' : ''}`}
                     {...register('email')}
                   />
                   {errors.email && (
-                    <p className="text-xs text-red-400 mt-1 font-mono">{errors.email.message}</p>
+                    <p className="text-xs text-red-300 mt-1.5 font-mono">{errors.email.message}</p>
                   )}
                 </div>
 
                 {/* Subject */}
                 <div>
-                  <label htmlFor="contact-subject" className="block text-xs font-mono text-slate-500 mb-1.5">
-                    <FileText size={12} className="inline mr-1" />subject
+                  <label htmlFor="contact-subject" className="block text-xs sm:text-sm font-mono text-slate-200 mb-2 font-medium">
+                    <FileText size={13} className="inline mr-1.5 text-indigo-400" />Subject
                   </label>
                   <input
                     id="contact-subject"
                     type="text"
-                    placeholder="What's this about?"
-                    className={`form-input ${errors.subject ? 'border-red-500/50' : ''}`}
+                    placeholder="Project Inquiry / Opportunity"
+                    className={`form-input ${errors.subject ? 'border-red-500/60' : ''}`}
                     {...register('subject')}
                   />
                   {errors.subject && (
-                    <p className="text-xs text-red-400 mt-1 font-mono">{errors.subject.message}</p>
+                    <p className="text-xs text-red-300 mt-1.5 font-mono">{errors.subject.message}</p>
                   )}
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="contact-message" className="block text-xs font-mono text-slate-500 mb-1.5">
-                    <MessageSquare size={12} className="inline mr-1" />message
+                  <label htmlFor="contact-message" className="block text-xs sm:text-sm font-mono text-slate-200 mb-2 font-medium">
+                    <MessageSquare size={13} className="inline mr-1.5 text-indigo-400" />Message
                   </label>
                   <textarea
                     id="contact-message"
                     rows={5}
                     placeholder="Tell me about your project, opportunity, or just say hi..."
-                    className={`form-input resize-none ${errors.message ? 'border-red-500/50' : ''}`}
+                    className={`form-input resize-none ${errors.message ? 'border-red-500/60' : ''}`}
                     {...register('message')}
                   />
                   {errors.message && (
-                    <p className="text-xs text-red-400 mt-1 font-mono">{errors.message.message}</p>
+                    <p className="text-xs text-red-300 mt-1.5 font-mono">{errors.message.message}</p>
                   )}
                 </div>
 

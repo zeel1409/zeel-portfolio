@@ -96,25 +96,24 @@ export const projects = [
 
 export const skills = {
   frontend: [
-    { name: 'React.js', level: 90, icon: '⚛️', desc: 'Component-driven UIs, hooks, state management' },
-    { name: 'JavaScript', level: 88, icon: '⚡', desc: 'ES6+, async/await, closures, DOM manipulation' },
-    { name: 'HTML5', level: 95, icon: '🏗️', desc: 'Semantic markup, accessibility, SEO structure' },
-    { name: 'CSS3', level: 85, icon: '🎨', desc: 'Flexbox, Grid, animations, responsive design' },
-    { name: 'Tailwind CSS', level: 88, icon: '🌊', desc: 'Utility-first styling, custom design systems' },
+    { name: 'React.js', level: 'Core Stack', badge: 'Used in 3+ Projects', icon: '⚛️', desc: 'Component architecture, custom hooks, state management & performance' },
+    { name: 'JavaScript', level: 'Core Stack', badge: 'Used in 10+ Repos', icon: '⚡', desc: 'ES6+, async/await, closures, promises & modular architecture' },
+    { name: 'Tailwind CSS', level: 'Production', badge: 'Daily Driver', icon: '🌊', desc: 'Custom design systems, responsive layouts & glassmorphism UI' },
+    { name: 'HTML5 & CSS3', level: 'Core', badge: 'Solid Foundation', icon: '🎨', desc: 'Semantic markup, accessibility, modern Grid/Flexbox layouts' },
   ],
   backend: [
-    { name: 'Node.js', level: 85, icon: '🟢', desc: 'Server-side JavaScript, event loop, streams' },
-    { name: 'Express.js', level: 85, icon: '🚂', desc: 'REST APIs, middleware, routing' },
-    { name: 'MongoDB', level: 82, icon: '🍃', desc: 'Document design, aggregation, indexing' },
-    { name: 'Mongoose', level: 80, icon: '🔗', desc: 'Schema modeling, validation, relationships' },
-    { name: 'REST APIs', level: 87, icon: '🔌', desc: 'API design, authentication, error handling' },
-    { name: 'JWT & Auth', level: 78, icon: '🔐', desc: 'Passport.js, JWT, session management' },
+    { name: 'Node.js', level: 'Core Stack', badge: 'Production Ready', icon: '🟢', desc: 'Server-side runtime, event loop, streams, REST service backends' },
+    { name: 'Express.js', level: 'Core Stack', badge: 'Used in 4+ Projects', icon: '🚂', desc: 'REST API routing, custom middleware pipelines, error handling' },
+    { name: 'MongoDB', level: 'Core Stack', badge: 'Production DB', icon: '🍃', desc: 'Document schemas, complex aggregations, indexing & Atlas clusters' },
+    { name: 'Mongoose', level: 'Production', badge: 'Data Modeling', icon: '🔗', desc: 'Schema modeling, validations, middleware hooks & relationships' },
+    { name: 'REST APIs', level: 'Core Stack', badge: 'Architecture', icon: '🔌', desc: 'Clean endpoint design, pagination, status codes & auth guards' },
+    { name: 'JWT & Auth', level: 'Production', badge: 'Security', icon: '🔐', desc: 'Passport.js, token lifecycle, password hashing & route protection' },
   ],
   tools: [
-    { name: 'Git', level: 88, icon: '🌿', desc: 'Version control, branching, collaborative workflows' },
-    { name: 'GitHub', level: 88, icon: '🐙', desc: 'Open source, pull requests, code reviews' },
-    { name: 'Cloudinary', level: 75, icon: '📸', desc: 'Image CDN, transformations, optimization' },
-    { name: 'Postman', level: 82, icon: '📬', desc: 'API testing, collection management' },
+    { name: 'Git & GitHub', level: 'Core', badge: 'Daily Workflow', icon: '🐙', desc: 'Version control, feature branches, pull requests & code collaboration' },
+    { name: 'Postman', level: 'Proficient', badge: 'API Testing', icon: '📬', desc: 'Endpoint debugging, automated collections & environment variables' },
+    { name: 'Cloudinary', level: 'Proficient', badge: 'Media CDN', icon: '📸', desc: 'Asset upload pipeline, dynamic transformations & cloud optimization' },
+    { name: 'Vite & Tooling', level: 'Proficient', badge: 'Modern Stack', icon: '⚡', desc: 'Bundler configuration, HMR & optimized production builds' },
   ],
 };
 

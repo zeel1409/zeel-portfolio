@@ -114,35 +114,35 @@ function ProjectCard({ project }) {
         <div className="space-y-6">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="font-mono text-xs text-slate-500">{project.category}</span>
-              <span className="w-1 h-1 rounded-full bg-slate-600" />
-              <span className="font-mono text-xs text-slate-500">{project.year}</span>
+              <span className="font-mono text-xs sm:text-sm text-indigo-300 font-semibold">{project.category}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              <span className="font-mono text-xs sm:text-sm text-slate-300">{project.year}</span>
             </div>
             <h3 className="font-display font-black text-3xl md:text-4xl text-white mb-2">
               {project.title}
             </h3>
-            <p className="text-slate-400 italic">{project.tagline}</p>
+            <p className="text-slate-300 italic text-base">{project.tagline}</p>
           </div>
 
           {/* Problem / Solution */}
           <div className="space-y-4">
-            <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
-              <div className="text-xs font-mono text-red-400/70 mb-2 uppercase tracking-widest">// The Problem</div>
-              <p className="text-slate-400 text-sm leading-relaxed">{project.problem}</p>
+            <div className="p-4 sm:p-5 rounded-xl bg-red-500/10 border border-red-500/20">
+              <div className="text-xs font-mono text-red-300 mb-2 uppercase tracking-widest font-semibold">// The Problem</div>
+              <p className="text-slate-200 text-sm leading-relaxed">{project.problem}</p>
             </div>
-            <div className="p-4 rounded-xl bg-green-500/5 border border-green-500/10">
-              <div className="text-xs font-mono text-green-400/70 mb-2 uppercase tracking-widest">// The Solution</div>
-              <p className="text-slate-400 text-sm leading-relaxed">{project.solution}</p>
+            <div className="p-4 sm:p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+              <div className="text-xs font-mono text-emerald-300 mb-2 uppercase tracking-widest font-semibold">// The Solution</div>
+              <p className="text-slate-200 text-sm leading-relaxed">{project.solution}</p>
             </div>
           </div>
 
           {/* Key features */}
           <div>
-            <div className="text-xs font-mono text-slate-600 mb-3 uppercase tracking-widest">// Key Features</div>
-            <ul className="space-y-2">
+            <div className="text-xs font-mono text-indigo-300 mb-3 uppercase tracking-widest font-semibold">// Key Features</div>
+            <ul className="space-y-2.5">
               {project.features.slice(0, 4).map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-slate-400">
-                  <CheckCircle size={14} className="text-neon-indigo shrink-0 mt-0.5" />
+                <li key={f} className="flex items-start gap-2.5 text-sm text-slate-200">
+                  <CheckCircle size={16} className="text-neon-indigo shrink-0 mt-0.5" />
                   {f}
                 </li>
               ))}
@@ -150,9 +150,9 @@ function ProjectCard({ project }) {
           </div>
 
           {/* My contribution */}
-          <div className="p-4 rounded-xl glass-card">
-            <div className="text-xs font-mono text-neon-indigo/60 mb-2 uppercase tracking-widest">// My Contribution</div>
-            <p className="text-slate-400 text-sm leading-relaxed">{project.myContribution}</p>
+          <div className="p-4 sm:p-5 rounded-xl glass-card border border-white/10">
+            <div className="text-xs font-mono text-indigo-300 mb-2 uppercase tracking-widest font-semibold">// My Contribution</div>
+            <p className="text-slate-200 text-sm leading-relaxed">{project.myContribution}</p>
           </div>
         </div>
       </div>
@@ -186,14 +186,14 @@ export default function Projects() {
                 Projects with{' '}
                 <span className="gradient-text">a story behind them.</span>
               </h2>
-              <p className="text-slate-500 mt-3">
+              <p className="text-slate-300 text-base md:text-lg mt-3">
                 Every project started with a real problem. Here's what I built to solve them.
               </p>
             </div>
 
             {/* Navigation */}
             <div className="flex items-center gap-4 shrink-0">
-              <span className="font-mono text-sm text-slate-500">
+              <span className="font-mono text-sm text-slate-200 font-semibold bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg">
                 {String(currentIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
               </span>
               <div className="flex gap-2">
