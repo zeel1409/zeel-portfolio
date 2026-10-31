@@ -51,10 +51,10 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Stricter rate limit for contact endpoint
+// Stricter rate limit for contact endpoint (relaxed during development for testing)
 const contactLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5,
+  max: process.env.NODE_ENV === 'production' ? 5 : 50,
   message: { success: false, message: 'Too many contact submissions. Please wait an hour.' },
   standardHeaders: true,
   legacyHeaders: false,

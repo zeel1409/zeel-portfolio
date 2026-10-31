@@ -18,6 +18,7 @@ const SUDO_SUBJECTS = ['sudo', 'rm -rf', 'chmod 777', 'git push --force'];
 
 export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [errorMessage, setErrorMessage] = useState('');
   const [isSudoMode, setIsSudoMode] = useState(false);
 
   const {
@@ -39,12 +40,20 @@ export default function Contact() {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/contact`, data);
       setSubmitStatus('success');
+      setErrorMessage('');
       reset();
       setTimeout(() => setSubmitStatus(null), 6000);
     } catch (err) {
       console.error(err);
+      const msg = err.response?.data?.message || (err.code === 'ERR_NETWORK'
+        ? 'Cannot reach backend server. Please make sure the backend is running on port 5000.'
+        : 'Something went wrong. Please try again or email me directly.');
+      setErrorMessage(msg);
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(null), 5000);
+      setTimeout(() => {
+        setSubmitStatus(null);
+        setErrorMessage('');
+      }, 6000);
     }
   };
 
@@ -146,8 +155,8 @@ export default function Contact() {
                   >
                     <AlertCircle size={20} className="text-red-400 shrink-0" />
                     <div>
-                      <p className="text-sm font-semibold text-red-300">Something went wrong</p>
-                      <p className="text-xs text-slate-200 mt-0.5">Please try again or email me directly.</p>
+                      <p className="text-sm font-semibold text-red-300">Submission Error</p>
+                      <p className="text-xs text-slate-200 mt-0.5">{errorMessage || 'Please try again or email me directly.'}</p>
                     </div>
                   </motion.div>
                 )}
