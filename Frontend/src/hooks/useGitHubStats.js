@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 
-export const useGitHubStats = (username) => {
+export const useGitHubStats = (username, enabled = true) => {
   const [stats, setStats] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const fetchStats = async () => {
       try {
         const [userRes, reposRes] = await Promise.all([
           fetch(`https://api.github.com/users/${username}`),
-          fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`),
+          fetch(`https://api.github.com/users/${username}/repos?per_page=30&sort=updated`),
         ]);
 
         if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
@@ -55,7 +57,7 @@ export const useGitHubStats = (username) => {
     };
 
     fetchStats();
-  }, [username]);
+  }, [username, enabled]);
 
   return { stats, repos, loading, error };
 };

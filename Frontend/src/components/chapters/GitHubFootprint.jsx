@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { ChapterLabel, FadeUp, StaggerChildren, StaggerItem } from '../ui/AnimatedSection';
 import { useGitHubStats } from '../../hooks/useGitHubStats';
 import { Star, GitFork, ExternalLink, BookOpen } from 'lucide-react';
@@ -72,10 +73,11 @@ function RepoCard({ repo }) {
 }
 
 export default function GitHubFootprint() {
-  const { stats, repos, loading } = useGitHubStats('zeel1409');
+  const { ref, inView } = useInView({ triggerOnce: true, rootMargin: '200px' });
+  const { stats, repos, loading } = useGitHubStats('zeel1409', inView);
 
   return (
-    <section id="github" className="relative py-28 px-6 overflow-hidden">
+    <section id="github" ref={ref} className="relative py-28 px-6 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-neon-indigo/50 to-transparent" />
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
 

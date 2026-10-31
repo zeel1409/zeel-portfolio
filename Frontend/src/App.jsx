@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { useEasterEggs } from './hooks/useEasterEggs';
+import { shouldSkipBoot } from './utils/perf';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollProgress from './components/ui/ScrollProgress';
 import BootSequence from './components/chapters/BootSequence';
 import Hero from './components/chapters/Hero';
-import Story from './components/chapters/Story';
-import Skills from './components/chapters/Skills';
-import Projects from './components/chapters/Projects';
-import GitHubFootprint from './components/chapters/GitHubFootprint';
-import Experience from './components/chapters/Experience';
-import Contact from './components/chapters/Contact';
 
-// Decorative divider between chapters
+const Story = lazy(() => import('./components/chapters/Story'));
+const Skills = lazy(() => import('./components/chapters/Skills'));
+const Projects = lazy(() => import('./components/chapters/Projects'));
+const GitHubFootprint = lazy(() => import('./components/chapters/GitHubFootprint'));
+const Experience = lazy(() => import('./components/chapters/Experience'));
+const Contact = lazy(() => import('./components/chapters/Contact'));
+
 function ChapterDivider() {
   return (
     <div className="max-w-6xl mx-auto px-6">
@@ -23,7 +24,6 @@ function ChapterDivider() {
   );
 }
 
-// Section that fades in after boot
 function MainContent() {
   useEasterEggs();
 
@@ -33,42 +33,41 @@ function MainContent() {
       <Navbar />
       <main>
         <Hero />
-        <ChapterDivider />
-        <Story />
-        <ChapterDivider />
-        <Skills />
-        <ChapterDivider />
-        <Projects />
-        <ChapterDivider />
-        <GitHubFootprint />
-        <ChapterDivider />
-        <Experience />
-        <ChapterDivider />
-        <Contact />
+        <Suspense fallback={null}>
+          <ChapterDivider />
+          <Story />
+          <ChapterDivider />
+          <Skills />
+          <ChapterDivider />
+          <Projects />
+          <ChapterDivider />
+          <GitHubFootprint />
+          <ChapterDivider />
+          <Experience />
+          <ChapterDivider />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </div>
   );
 }
 
+const skipBoot = shouldSkipBoot();
+
 function App() {
-  const [booted, setBooted] = useState(false);
-  const [showMain, setShowMain] = useState(false);
+  const [booted, setBooted] = useState(skipBoot);
+  const [showMain, setShowMain] = useState(skipBoot);
 
-  // Check if already visited this session
-  useEffect(() => {
-    const visited = sessionStorage.getItem('zeel-booted');
-    if (visited) {
-      setBooted(true);
-      setShowMain(true);
+  const handleBootComplete = useCallback(() => {
+    try {
+      sessionStorage.setItem('zeel-booted', '1');
+    } catch {
+      /* private mode */
     }
-  }, []);
-
-  const handleBootComplete = () => {
-    sessionStorage.setItem('zeel-booted', '1');
     setBooted(true);
-    setTimeout(() => setShowMain(true), 100);
-  };
+    setShowMain(true);
+  }, []);
 
   return (
     <ThemeProvider>
@@ -76,18 +75,22 @@ function App() {
         {!booted && <BootSequence key="boot" onComplete={handleBootComplete} />}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {showMain && (
-          <motion.div
-            key="main"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <MainContent />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {skipBoot ? (
+        showMain && <MainContent />
+      ) : (
+        <AnimatePresence>
+          {showMain && (
+            <motion.div
+              key="main"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.45 }}
+            >
+              <MainContent />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </ThemeProvider>
   );
 }

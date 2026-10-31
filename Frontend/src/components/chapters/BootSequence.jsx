@@ -29,8 +29,7 @@ export default function BootSequence({ onComplete }) {
       }, line.delay)
     );
 
-    // Auto-skip after 4s
-    const autoSkip = setTimeout(() => { setDone(true); }, 4200);
+    const autoSkip = setTimeout(() => { setDone(true); }, 2400);
 
     return () => { timers.forEach(clearTimeout); clearTimeout(autoSkip); };
   }, []);

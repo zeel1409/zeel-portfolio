@@ -229,6 +229,13 @@ h1, h2, h3, h4, h5, h6 {
   scrollbar-width: none;
 }
 
+@media (max-width: 768px) {
+  #story, #skills, #projects, #github, #experience, #contact, footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px;
+  }
+}
+
 /* ─── Mobile responsiveness ─────────────────────────────────────── */
 @media (max-width: 768px) {
   .glass-card-hover:hover {

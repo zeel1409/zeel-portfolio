@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { TypeAnimation } from 'react-type-animation';
+import { isCompactViewport } from '../../utils/perf';
 
 // Floating code particle
 function CodeParticle({ text, style }) {
@@ -115,11 +116,13 @@ function DevOrb() {
 
 export default function Hero() {
   const containerRef = useRef(null);
+  const compact = isCompactViewport();
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] });
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
 
   const [duckActive, setDuckActive] = useState(false);
+  const enter = compact ? false : { opacity: 0, y: 20 };
 
   const handleBraceClick = () => {
     setDuckActive(true);
@@ -153,9 +156,9 @@ export default function Hero() {
         {/* Left: text */}
         <div className="flex-1 max-w-2xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={enter}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: compact ? 0 : 0.6, delay: compact ? 0 : 0.1 }}
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-mono text-neon-indigo/80 mb-6 border border-neon-indigo/20"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse-slow" />
@@ -163,9 +166,9 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={compact ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: compact ? 0 : 0.7, delay: compact ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
           >
             <span className="text-slate-900 dark:text-slate-100">Hi, I'm </span>
@@ -195,26 +198,30 @@ export default function Hero() {
           )}
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={enter}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
+            transition={{ duration: compact ? 0 : 0.7, delay: compact ? 0 : 0.35 }}
             className="text-2xl md:text-3xl font-display font-semibold text-slate-700 dark:text-slate-300 mb-4"
           >
-            <TypeAnimation
-              sequence={[
-                'I build digital experiences.',
-                2000,
-                'I architect robust backends.',
-                2000,
-                'I ship full-stack products.',
-                2000,
-                'I turn ideas into reality.',
-                2000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
+            {compact ? (
+              'I turn ideas into reality.'
+            ) : (
+              <TypeAnimation
+                sequence={[
+                  'I build digital experiences.',
+                  2000,
+                  'I architect robust backends.',
+                  2000,
+                  'I ship full-stack products.',
+                  2000,
+                  'I turn ideas into reality.',
+                  2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+            )}
           </motion.div>
 
           <motion.p
