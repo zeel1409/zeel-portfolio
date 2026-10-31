@@ -6,6 +6,8 @@ import { ExternalLink, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-rea
 import { FaGithub } from 'react-icons/fa';
 
 function ProjectCard({ project }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <motion.div
       className="w-full"
@@ -29,12 +31,17 @@ function ProjectCard({ project }) {
             <div className="absolute inset-0 bg-grid opacity-30" />
 
             {/* Central display — image or emoji fallback */}
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={`${project.title} screenshot`}
-                className="absolute inset-0 w-full h-full object-cover object-top opacity-90"
-              />
+            {project.image && !imgError ? (
+              <>
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-90 transition-opacity duration-300"
+                  onError={() => setImgError(true)}
+                />
+                {/* Bottom gradient overlay to make tech tags readable */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
+              </>
             ) : (
               <div className="relative z-10 text-center">
                 <div className="text-8xl mb-4">{project.emoji}</div>
@@ -49,9 +56,9 @@ function ProjectCard({ project }) {
             )}
 
             {/* Corner status badge */}
-            <div className="absolute top-4 right-4">
+            <div className="absolute top-4 right-4 z-10">
               <span
-                className="px-2 py-1 rounded-md text-xs font-mono font-medium"
+                className="px-2 py-1 rounded-md text-xs font-mono font-medium backdrop-blur-md"
                 style={{ background: `${project.color}20`, color: project.color }}
               >
                 {project.status}
@@ -59,17 +66,17 @@ function ProjectCard({ project }) {
             </div>
 
             {/* Tech chips at bottom */}
-            <div className="absolute bottom-4 inset-x-4 flex flex-wrap gap-1.5 justify-center">
+            <div className="absolute bottom-4 inset-x-4 flex flex-wrap gap-1.5 justify-center z-10">
               {project.tech.slice(0, 4).map((t) => (
                 <span
                   key={t}
-                  className="px-2 py-0.5 rounded text-xs font-mono text-slate-400 bg-black/30 border border-white/5"
+                  className="px-2 py-0.5 rounded text-xs font-mono text-slate-300 bg-black/60 backdrop-blur-md border border-white/10 shadow-sm"
                 >
                   {t}
                 </span>
               ))}
               {project.tech.length > 4 && (
-                <span className="px-2 py-0.5 rounded text-xs font-mono text-slate-500 bg-black/30 border border-white/5">
+                <span className="px-2 py-0.5 rounded text-xs font-mono text-slate-400 bg-black/60 backdrop-blur-md border border-white/10 shadow-sm">
                   +{project.tech.length - 4} more
                 </span>
               )}
