@@ -8,51 +8,57 @@ function SkillCard({ skill, accentColor = 'indigo' }) {
     indigo: {
       badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
       hoverBorder: 'hover:border-indigo-500/40',
-      accentDot: 'bg-indigo-400',
+      iconBg: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
     },
     cyan: {
       badge: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
       hoverBorder: 'hover:border-cyan-500/40',
-      accentDot: 'bg-cyan-400',
+      iconBg: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
     },
     violet: {
       badge: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
       hoverBorder: 'hover:border-purple-500/40',
-      accentDot: 'bg-purple-400',
+      iconBg: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
     },
   }[accentColor] || {
     badge: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
     hoverBorder: 'hover:border-indigo-500/40',
-    accentDot: 'bg-indigo-400',
+    iconBg: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
   };
 
   return (
     <motion.div
-      className={`glass-card rounded-2xl p-5 border border-white/10 ${colorStyles.hoverBorder} transition-all duration-300 flex flex-col justify-between group shadow-sm`}
+      className={`glass-card rounded-2xl p-4 sm:p-5 border border-white/10 ${colorStyles.hoverBorder} transition-all duration-300 flex flex-col justify-between group shadow-sm min-h-[170px] overflow-hidden`}
       whileHover={{ y: -3 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       <div>
-        <div className="flex items-start justify-between gap-3 mb-2.5">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl p-1.5 rounded-xl bg-white/[0.04] border border-white/5 shrink-0">{skill.icon}</span>
-            <div>
-              <h4 className="font-display font-bold text-white text-base group-hover:text-neon-indigo transition-colors">
-                {skill.name}
-              </h4>
-              <span className={`inline-block mt-0.5 px-2 py-0.5 rounded-full text-[11px] font-mono font-medium border ${colorStyles.badge}`}>
-                {skill.level}
-              </span>
-            </div>
-          </div>
-          <span className="text-[11px] font-mono text-slate-300 bg-white/[0.06] border border-white/10 px-2.5 py-1 rounded-md shrink-0">
-            {skill.badge}
+        {/* Top: Icon + Name */}
+        <div className="flex items-center gap-3 mb-2.5">
+          <span className="text-2xl p-2 rounded-xl bg-white/[0.04] border border-white/10 shrink-0">
+            {skill.icon}
           </span>
+          <div className="min-w-0 flex-1">
+            <h4 className="font-display font-bold text-white text-base truncate group-hover:text-neon-indigo transition-colors">
+              {skill.name}
+            </h4>
+          </div>
         </div>
 
-        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mt-2">
+        {/* Middle: Description */}
+        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-2 mt-1">
           {skill.desc}
         </p>
+      </div>
+
+      {/* Bottom: Level + Project badge */}
+      <div className="flex items-center justify-between gap-2 mt-4 pt-3 border-t border-white/10 text-[11px] font-mono">
+        <span className={`px-2 py-0.5 rounded-full font-medium border ${colorStyles.badge} truncate`}>
+          {skill.level}
+        </span>
+        <span className="text-slate-300 bg-white/[0.06] border border-white/10 px-2 py-0.5 rounded-md truncate max-w-[130px]">
+          {skill.badge}
+        </span>
       </div>
     </motion.div>
   );
@@ -79,60 +85,64 @@ export default function Skills() {
         </FadeUp>
 
         {/* Both Frontend and Backend visible at once */}
-        <div className="grid lg:grid-cols-2 gap-8 items-start mb-12">
+        <div className="grid lg:grid-cols-2 gap-8 items-stretch mb-12">
           {/* Frontend Section */}
-          <FadeUp delay={0.1}>
-            <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/40 h-full">
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
-                    <Layers size={20} />
+          <FadeUp delay={0.1} className="h-full">
+            <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/40 h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+                      <Layers size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-xl text-white">Frontend Architecture</h3>
+                      <p className="text-xs font-mono text-indigo-300">Client-Side & Interactive UIs</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-white">Frontend Architecture</h3>
-                    <p className="text-xs font-mono text-indigo-300">Client-Side & Interactive UIs</p>
-                  </div>
+                  <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                    {skills.frontend.length} Technologies
+                  </span>
                 </div>
-                <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
-                  {skills.frontend.length} Technologies
-                </span>
-              </div>
 
-              <StaggerChildren className="grid sm:grid-cols-2 gap-4" stagger={0.06}>
-                {skills.frontend.map((skill) => (
-                  <StaggerItem key={skill.name}>
-                    <SkillCard skill={skill} accentColor="indigo" />
-                  </StaggerItem>
-                ))}
-              </StaggerChildren>
+                <StaggerChildren className="grid sm:grid-cols-2 gap-4" stagger={0.05}>
+                  {skills.frontend.map((skill) => (
+                    <StaggerItem key={skill.name}>
+                      <SkillCard skill={skill} accentColor="indigo" />
+                    </StaggerItem>
+                  ))}
+                </StaggerChildren>
+              </div>
             </div>
           </FadeUp>
 
           {/* Backend Section */}
-          <FadeUp delay={0.2}>
-            <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/40 h-full">
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
-                    <Server size={20} />
+          <FadeUp delay={0.2} className="h-full">
+            <div className="p-6 rounded-3xl glass-card border border-white/10 bg-surface/40 h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
+                      <Server size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-xl text-white">Backend & Database</h3>
+                      <p className="text-xs font-mono text-cyan-300">Server, REST APIs & Modeling</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-white">Backend & Database</h3>
-                    <p className="text-xs font-mono text-cyan-300">Server, REST APIs & Modeling</p>
-                  </div>
+                  <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                    {skills.backend.length} Technologies
+                  </span>
                 </div>
-                <span className="text-xs font-mono text-slate-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
-                  {skills.backend.length} Technologies
-                </span>
-              </div>
 
-              <StaggerChildren className="grid sm:grid-cols-2 gap-4" stagger={0.06}>
-                {skills.backend.map((skill) => (
-                  <StaggerItem key={skill.name}>
-                    <SkillCard skill={skill} accentColor="cyan" />
-                  </StaggerItem>
-                ))}
-              </StaggerChildren>
+                <StaggerChildren className="grid sm:grid-cols-2 gap-4" stagger={0.05}>
+                  {skills.backend.map((skill) => (
+                    <StaggerItem key={skill.name}>
+                      <SkillCard skill={skill} accentColor="cyan" />
+                    </StaggerItem>
+                  ))}
+                </StaggerChildren>
+              </div>
             </div>
           </FadeUp>
         </div>

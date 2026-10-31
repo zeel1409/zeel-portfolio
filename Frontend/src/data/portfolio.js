@@ -100,6 +100,8 @@ export const skills = {
     { name: 'JavaScript', level: 'Core Stack', badge: 'Used in 10+ Repos', icon: '⚡', desc: 'ES6+, async/await, closures, promises & modular architecture' },
     { name: 'Tailwind CSS', level: 'Production', badge: 'Daily Driver', icon: '🌊', desc: 'Custom design systems, responsive layouts & glassmorphism UI' },
     { name: 'HTML5 & CSS3', level: 'Core', badge: 'Solid Foundation', icon: '🎨', desc: 'Semantic markup, accessibility, modern Grid/Flexbox layouts' },
+    { name: 'Framer Motion', level: 'Production', badge: 'Interactive UI', icon: '✨', desc: 'Fluid spring physics, layout animations & scroll storytelling' },
+    { name: 'Responsive UI', level: 'Core Stack', badge: 'Mobile First', icon: '📱', desc: 'Cross-device fluid UX, touch targets & adaptive layouts' },
   ],
   backend: [
     { name: 'Node.js', level: 'Core Stack', badge: 'Production Ready', icon: '🟢', desc: 'Server-side runtime, event loop, streams, REST service backends' },
