@@ -66,7 +66,7 @@ export default function Story() {
               <ChapterLabel number="01" label="Who I Am" />
               <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mb-6">
                 Not just a developer.{' '}
-                <span className="gradient-text">A builder.</span>
+                <span className="text-neon-indigo">A builder.</span>
               </h2>
               <p className="text-slate-200 text-lg leading-relaxed mb-4">
                 I'm Zeel — a Full Stack Developer who finds genuine joy in the process of building.
@@ -108,7 +108,7 @@ export default function Story() {
               <ChapterLabel number="02" label="How I Think" />
               <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mb-10">
                 Principles that{' '}
-                <span className="gradient-text">guide my work.</span>
+                <span className="text-neon-indigo">guide my work.</span>
               </h2>
             </FadeUp>
 

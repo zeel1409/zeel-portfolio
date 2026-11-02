@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChapterLabel, FadeUp, StaggerChildren, StaggerItem } from '../ui/AnimatedSection';
 import { timeline } from '../../data/portfolio';
+import { Sprout, Zap, Layers, Globe, Cloud, Star } from 'lucide-react';
 
 const typeColors = {
   start: 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300',
@@ -8,6 +9,14 @@ const typeColors = {
   milestone: 'border-amber-500/40 bg-amber-500/15 text-amber-300',
   project: 'border-cyan-500/40 bg-cyan-500/15 text-cyan-300',
   now: 'border-purple-500/40 bg-purple-500/15 text-purple-300',
+};
+
+const typeIcons = {
+  start:     { Icon: Sprout, color: 'text-emerald-400' },
+  learning:  { Icon: Zap,    color: 'text-indigo-400'  },
+  milestone: { Icon: Layers, color: 'text-amber-400'   },
+  project:   { Icon: Globe,  color: 'text-cyan-400'    },
+  now:       { Icon: Star,   color: 'text-purple-400'  },
 };
 
 export default function Experience() {
@@ -19,7 +28,7 @@ export default function Experience() {
         <FadeUp>
           <ChapterLabel number="06" label="The Journey" />
           <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            Every step <span className="gradient-text">was a lesson.</span>
+            Every step <span className="text-neon-indigo">was a lesson.</span>
           </h2>
           <p className="text-slate-300 text-base md:text-lg mb-16 max-w-xl leading-relaxed">
             My path from "Hello, World!" to shipping full-stack products. A sequence of deliberate, focused leaps.
@@ -55,13 +64,12 @@ export default function Experience() {
 
                     {/* Center dot icon */}
                     <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-6 z-10">
-                      <motion.div
-                        className="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-xl border border-white/20 bg-surface shadow-lg"
-                        whileHover={{ scale: 1.1, rotate: 8 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        {item.icon}
-                      </motion.div>
+                      <div className="w-10 h-10 rounded-xl glass-card flex items-center justify-center border border-white/20 bg-surface shadow-lg">
+                        {(() => {
+                          const { Icon, color } = typeIcons[item.type] || typeIcons.learning;
+                          return <Icon size={18} className={color} />;
+                        })()}
+                      </div>
                     </div>
 
                     {/* Empty spacer for alternating layout */}

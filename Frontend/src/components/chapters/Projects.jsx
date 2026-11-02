@@ -184,7 +184,7 @@ export default function Projects() {
             <div>
               <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight">
                 Projects with{' '}
-                <span className="gradient-text">a story behind them.</span>
+                <span className="text-neon-indigo">a story behind them.</span>
               </h2>
               <p className="text-slate-300 text-base md:text-lg mt-3">
                 Every project started with a real problem. Here's what I built to solve them.

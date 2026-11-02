@@ -2,33 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
-import { TypeAnimation } from 'react-type-animation';
 import { isCompactViewport } from '../../utils/perf';
-
-// Floating code particle
-function CodeParticle({ text, style }) {
-  return (
-    <motion.div
-      className="absolute font-mono text-xs text-neon-indigo/20 select-none pointer-events-none"
-      style={style}
-      animate={{ y: [0, -15, 0], opacity: [0.2, 0.5, 0.2] }}
-      transition={{ duration: 4 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3 }}
-    >
-      {text}
-    </motion.div>
-  );
-}
-
-const codeParticles = [
-  { text: 'const zeel = new Developer();', style: { top: '15%', left: '5%' } },
-  { text: 'npm run build-something-great', style: { top: '25%', right: '3%' } },
-  { text: 'git commit -m "shipped! 🚀"', style: { top: '65%', left: '2%' } },
-  { text: '{ passion: true, bugs: false }', style: { bottom: '25%', right: '4%' } },
-  { text: 'while(alive) { code(); learn(); }', style: { top: '45%', left: '1%' } },
-  { text: 'return <BetterTomorrow />;', style: { bottom: '35%', left: '6%' } },
-  { text: 'async function makeItWork() {}', style: { top: '75%', right: '2%' } },
-  { text: '// TODO: change the world', style: { top: '55%', right: '5%' } },
-];
 
 // Interactive Developer Showcase Card
 function HeroVisual() {
@@ -79,19 +53,10 @@ function HeroVisual() {
         {/* Profile Card Snippet */}
         <div className="flex items-center gap-4 mb-5 p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
           <img
-            src="https://avatars.githubusercontent.com/u/167232230?v=4"
+            src="/images/zeel.jpg"
             alt="Zeel Kadiya"
             className="w-14 h-14 rounded-full ring-2 ring-neon-indigo/50 object-cover shrink-0"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              if (e.currentTarget.nextElementSibling) {
-                e.currentTarget.nextElementSibling.style.display = 'flex';
-              }
-            }}
           />
-          <div className="w-14 h-14 rounded-full bg-neon-indigo/20 ring-2 ring-neon-indigo/50 items-center justify-center text-2xl shrink-0 hidden">
-            👨‍💻
-          </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h3 className="font-display font-bold text-white text-base truncate">Zeel Kadiya</h3>
@@ -156,13 +121,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
 
-  const [duckActive, setDuckActive] = useState(false);
   const enter = compact ? false : { opacity: 0, y: 20 };
-
-  const handleBraceClick = () => {
-    setDuckActive(true);
-    setTimeout(() => setDuckActive(false), 3000);
-  };
 
   return (
     <section
@@ -175,13 +134,6 @@ export default function Hero() {
 
       {/* Hero radial glow */}
       <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-
-      {/* Code particles */}
-      <div className="hidden lg:block">
-        {codeParticles.map((p, i) => (
-          <CodeParticle key={i} text={p.text} style={p.style} />
-        ))}
-      </div>
 
       {/* Main content */}
       <motion.div
@@ -207,69 +159,16 @@ export default function Hero() {
             className="font-display text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
           >
             <span className="text-slate-900 dark:text-slate-100">Hi, I'm </span>
-            <span className="gradient-text"> Zeel</span>
-            <motion.span
-              className="inline-block cursor-pointer"
-              onClick={handleBraceClick}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              title="Click me 👀"
-            >
-              {' '}👋
-            </motion.span>
+            <span className="text-neon-indigo"> Zeel</span>
           </motion.h1>
 
-          {/* Duck Easter egg */}
-          {duckActive && (
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              className="absolute text-4xl animate-float pointer-events-none"
-              style={{ top: '30%', left: '20%' }}
-            >
-              🦆
-            </motion.div>
-          )}
-
-          <motion.div
+          <motion.p
             initial={enter}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: compact ? 0 : 0.7, delay: compact ? 0 : 0.35 }}
-            className="text-2xl md:text-3xl font-display font-semibold text-slate-700 dark:text-slate-300 mb-4"
+            className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed max-w-xl"
           >
-            {compact ? (
-              'I turn ideas into reality.'
-            ) : (
-              <TypeAnimation
-                sequence={[
-                  'I build digital experiences.',
-                  2000,
-                  'I architect robust backends.',
-                  2000,
-                  'I ship full-stack products.',
-                  2000,
-                  'I turn ideas into reality.',
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-              />
-            )}
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="text-slate-400 text-lg mb-8 leading-relaxed max-w-xl"
-          >
-            Full Stack Developer specializing in the{' '}
-            <span className="text-neon-cyan font-medium">MERN stack</span>.
-            Turning ideas into{' '}
-            <span className="text-neon-indigo font-medium">real-world applications</span>{' '}
-            — one commit at a time.
+            Full-stack developer. I build apps with React, Node.js, Express and MongoDB.
           </motion.p>
 
           <motion.div

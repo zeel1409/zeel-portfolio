@@ -142,7 +142,7 @@ export default function GitHubFootprint() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div>
               <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight">
-                My GitHub <span className="gradient-text">story in numbers.</span>
+                My GitHub <span className="text-neon-indigo">story in numbers.</span>
               </h2>
               <p className="text-slate-300 text-base md:text-lg mt-3">
                 Live activity, repositories, and language breakdown directly from GitHub.

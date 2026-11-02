@@ -33,10 +33,10 @@ function SkillCard({ skill, accentColor = 'indigo' }) {
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       <div>
-        {/* Top: Icon + Name */}
+        {/* Top: Initial + Name */}
         <div className="flex items-center gap-3 mb-2.5">
-          <span className="text-2xl p-2 rounded-xl bg-white/[0.04] border border-white/10 shrink-0">
-            {skill.icon}
+          <span className={`w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold font-mono shrink-0 border ${colorStyles.iconBg}`}>
+            {skill.name.charAt(0)}
           </span>
           <div className="min-w-0 flex-1">
             <h4 className="font-display font-bold text-white text-base truncate group-hover:text-neon-indigo transition-colors">
@@ -76,7 +76,7 @@ export default function Skills() {
           <ChapterLabel number="03" label="My Arsenal" />
           <div className="mb-14">
             <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight">
-              Tools I <span className="gradient-text">actually use.</span>
+              Tools I <span className="text-neon-indigo">actually use.</span>
             </h2>
             <p className="text-slate-300 text-base md:text-lg mt-3 max-w-2xl leading-relaxed">
               Not arbitrary percentages — these are real production technologies I build with daily across the MERN stack.

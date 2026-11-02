@@ -78,7 +78,7 @@ export default function Contact() {
               <ChapterLabel number="07" label="Open Channel" />
               <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mb-6">
                 Let's build{' '}
-                <span className="gradient-text">something great.</span>
+                <span className="text-neon-indigo">something great.</span>
               </h2>
               <p className="text-slate-200 text-base md:text-lg leading-relaxed mb-4">
                 Whether you have a project in mind, an opportunity to share, or just want to connect —

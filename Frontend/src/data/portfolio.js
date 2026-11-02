@@ -96,26 +96,26 @@ export const projects = [
 
 export const skills = {
   frontend: [
-    { name: 'React.js', level: 'Core Stack', badge: 'Used in 3+ Projects', icon: '⚛️', desc: 'Component architecture, custom hooks, state management & performance' },
-    { name: 'JavaScript', level: 'Core Stack', badge: 'Used in 10+ Repos', icon: '⚡', desc: 'ES6+, async/await, closures, promises & modular architecture' },
-    { name: 'Tailwind CSS', level: 'Production', badge: 'Daily Driver', icon: '🌊', desc: 'Custom design systems, responsive layouts & glassmorphism UI' },
-    { name: 'HTML5 & CSS3', level: 'Core', badge: 'Solid Foundation', icon: '🎨', desc: 'Semantic markup, accessibility, modern Grid/Flexbox layouts' },
-    { name: 'Framer Motion', level: 'Production', badge: 'Interactive UI', icon: '✨', desc: 'Fluid spring physics, layout animations & scroll storytelling' },
-    { name: 'Responsive UI', level: 'Core Stack', badge: 'Mobile First', icon: '📱', desc: 'Cross-device fluid UX, touch targets & adaptive layouts' },
+    { name: 'React.js', level: 'Core Stack', badge: 'Used in 3+ Projects', desc: 'Component architecture, custom hooks, state management & performance' },
+    { name: 'JavaScript', level: 'Core Stack', badge: 'Used in 10+ Repos', desc: 'ES6+, async/await, closures, promises & modular architecture' },
+    { name: 'Tailwind CSS', level: 'Production', badge: 'Daily Driver', desc: 'Custom design systems, responsive layouts & utility-first CSS' },
+    { name: 'HTML5 & CSS3', level: 'Core', badge: 'Solid Foundation', desc: 'Semantic markup, accessibility, modern Grid/Flexbox layouts' },
+    { name: 'Framer Motion', level: 'Production', badge: 'Interactive UI', desc: 'Fluid spring physics, layout animations & scroll storytelling' },
+    { name: 'Responsive UI', level: 'Core Stack', badge: 'Mobile First', desc: 'Cross-device fluid UX, touch targets & adaptive layouts' },
   ],
   backend: [
-    { name: 'Node.js', level: 'Core Stack', badge: 'Production Ready', icon: '🟢', desc: 'Server-side runtime, event loop, streams, REST service backends' },
-    { name: 'Express.js', level: 'Core Stack', badge: 'Used in 4+ Projects', icon: '🚂', desc: 'REST API routing, custom middleware pipelines, error handling' },
-    { name: 'MongoDB', level: 'Core Stack', badge: 'Production DB', icon: '🍃', desc: 'Document schemas, complex aggregations, indexing & Atlas clusters' },
-    { name: 'Mongoose', level: 'Production', badge: 'Data Modeling', icon: '🔗', desc: 'Schema modeling, validations, middleware hooks & relationships' },
-    { name: 'REST APIs', level: 'Core Stack', badge: 'Architecture', icon: '🔌', desc: 'Clean endpoint design, pagination, status codes & auth guards' },
-    { name: 'JWT & Auth', level: 'Production', badge: 'Security', icon: '🔐', desc: 'Passport.js, token lifecycle, password hashing & route protection' },
+    { name: 'Node.js', level: 'Core Stack', badge: 'Production Ready', desc: 'Server-side runtime, event loop, streams, REST service backends' },
+    { name: 'Express.js', level: 'Core Stack', badge: 'Used in 4+ Projects', desc: 'REST API routing, custom middleware pipelines, error handling' },
+    { name: 'MongoDB', level: 'Core Stack', badge: 'Production DB', desc: 'Document schemas, complex aggregations, indexing & Atlas clusters' },
+    { name: 'Mongoose', level: 'Production', badge: 'Data Modeling', desc: 'Schema modeling, validations, middleware hooks & relationships' },
+    { name: 'REST APIs', level: 'Core Stack', badge: 'Architecture', desc: 'Clean endpoint design, pagination, status codes & auth guards' },
+    { name: 'JWT & Auth', level: 'Production', badge: 'Security', desc: 'Passport.js, token lifecycle, password hashing & route protection' },
   ],
   tools: [
-    { name: 'Git & GitHub', level: 'Core', badge: 'Daily Workflow', icon: '🐙', desc: 'Version control, feature branches, pull requests & code collaboration' },
-    { name: 'Postman', level: 'Proficient', badge: 'API Testing', icon: '📬', desc: 'Endpoint debugging, automated collections & environment variables' },
-    { name: 'Cloudinary', level: 'Proficient', badge: 'Media CDN', icon: '📸', desc: 'Asset upload pipeline, dynamic transformations & cloud optimization' },
-    { name: 'Vite & Tooling', level: 'Proficient', badge: 'Modern Stack', icon: '⚡', desc: 'Bundler configuration, HMR & optimized production builds' },
+    { name: 'Git & GitHub', level: 'Core', badge: 'Daily Workflow', desc: 'Version control, feature branches, pull requests & code collaboration' },
+    { name: 'Postman', level: 'Proficient', badge: 'API Testing', desc: 'Endpoint debugging, automated collections & environment variables' },
+    { name: 'Cloudinary', level: 'Proficient', badge: 'Media CDN', desc: 'Asset upload pipeline, dynamic transformations & cloud optimization' },
+    { name: 'Vite & Tooling', level: 'Proficient', badge: 'Modern Stack', desc: 'Bundler configuration, HMR & optimized production builds' },
   ],
 };
 
@@ -125,7 +125,6 @@ export const timeline = [
     title: 'The Beginning',
     subtitle: 'First Lines of Code',
     desc: 'Wrote my first "Hello, World!" and got hooked. Started learning HTML, CSS, and JavaScript through self-study and online courses.',
-    icon: '🌱',
     type: 'start',
   },
   {
@@ -133,7 +132,6 @@ export const timeline = [
     title: 'JavaScript Deep Dive',
     subtitle: 'DOM, ES6, Async Programming',
     desc: 'Mastered JavaScript fundamentals — closures, promises, fetch API, and modern ES6+ patterns. Built small projects and interactive UIs.',
-    icon: '⚡',
     type: 'learning',
   },
   {
@@ -141,7 +139,6 @@ export const timeline = [
     title: 'Going Full Stack',
     subtitle: 'Node.js, Express, MongoDB',
     desc: 'Discovered the MERN stack. Learned server-side development, REST API design, database modeling, and deployed my first full-stack applications.',
-    icon: '🚀',
     type: 'milestone',
   },
   {
@@ -149,7 +146,6 @@ export const timeline = [
     title: 'Wanderlust',
     subtitle: 'First Major Project',
     desc: 'Built a full Airbnb-inspired platform from scratch — handling authentication, Cloudinary image uploads, Mapbox integration, and deployment.',
-    icon: '🌍',
     type: 'project',
   },
   {
@@ -157,7 +153,6 @@ export const timeline = [
     title: 'Cloudbase',
     subtitle: 'Cloud Storage Platform',
     desc: 'Designed and built a cloud file manager with secure JWT authentication, drag-and-drop uploads, and a clean React UI.',
-    icon: '☁️',
     type: 'project',
   },
   {
@@ -165,7 +160,6 @@ export const timeline = [
     title: 'Today',
     subtitle: 'Actively Building & Growing',
     desc: 'Deepening expertise in React, Framer Motion, and backend architecture. Open to full-stack opportunities and exciting challenges.',
-    icon: '✨',
     type: 'now',
   },
 ];
