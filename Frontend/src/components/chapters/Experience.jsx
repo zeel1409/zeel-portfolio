@@ -1,85 +1,72 @@
 import { motion } from 'framer-motion';
-import { ChapterLabel, FadeUp, StaggerChildren, StaggerItem } from '../ui/AnimatedSection';
-import { timeline } from '../../data/portfolio';
-import { Sprout, Zap, Layers, Globe, Cloud, Star } from 'lucide-react';
-
-const typeColors = {
-  start: 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300',
-  learning: 'border-indigo-500/40 bg-indigo-500/15 text-indigo-300',
-  milestone: 'border-amber-500/40 bg-amber-500/15 text-amber-300',
-  project: 'border-cyan-500/40 bg-cyan-500/15 text-cyan-300',
-  now: 'border-purple-500/40 bg-purple-500/15 text-purple-300',
-};
-
-const typeIcons = {
-  start:     { Icon: Sprout, color: 'text-emerald-400' },
-  learning:  { Icon: Zap,    color: 'text-indigo-400'  },
-  milestone: { Icon: Layers, color: 'text-amber-400'   },
-  project:   { Icon: Globe,  color: 'text-cyan-400'    },
-  now:       { Icon: Star,   color: 'text-purple-400'  },
-};
+import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import { FadeUp, StaggerChildren, StaggerItem } from '../ui/AnimatedSection';
+import { experiences } from '../../data/portfolio';
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-28 px-6">
-      <div className="absolute right-0 top-1/2 w-80 h-80 rounded-full opacity-10 blur-3xl bg-neon-cyan pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="relative py-24 px-6 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
         <FadeUp>
-          <ChapterLabel number="06" label="The Journey" />
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            Every step <span className="text-neon-indigo">was a lesson.</span>
-          </h2>
-          <p className="text-slate-300 text-base md:text-lg mb-16 max-w-xl leading-relaxed">
-            My path from "Hello, World!" to shipping full-stack products. A sequence of deliberate, focused leaps.
-          </p>
+          <div className="mb-12">
+            <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight">
+              Work <span className="text-neon-indigo">Experience.</span>
+            </h2>
+            <p className="text-slate-300 text-base md:text-lg mt-3 max-w-2xl leading-relaxed">
+              Professional industry experience building full-stack applications, secure APIs, and responsive user interfaces.
+            </p>
+          </div>
         </FadeUp>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-indigo-500/20 to-transparent -translate-x-1/2" />
-
-          <StaggerChildren className="space-y-0" stagger={0.12}>
-            {timeline.map((item, i) => {
-              const isRight = i % 2 === 0;
-              return (
-                <StaggerItem key={`${item.year}-${item.title}`}>
-                  <div className={`relative flex items-start gap-6 md:gap-0 pb-16 ${isRight ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                    {/* Content block */}
-                    <div className={`flex-1 pl-14 md:pl-0 ${isRight ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                      <div className="glass-card rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-indigo-500/40 transition-all duration-300 shadow-sm min-h-[150px]">
-                        <div className={`flex items-center gap-2 mb-3 ${isRight ? 'md:justify-end' : 'justify-start'}`}>
-                          <span
-                            className={`px-2.5 py-1 rounded-md text-xs font-mono font-bold border ${typeColors[item.type] || typeColors.learning}`}
-                          >
-                            {item.year}
-                          </span>
-                        </div>
-                        <h3 className="font-display font-bold text-xl text-white mb-1">{item.title}</h3>
-                        <p className="font-mono text-xs sm:text-sm text-indigo-300 font-medium mb-3.5">{item.subtitle}</p>
-                        <p className="text-slate-200 text-sm sm:text-base leading-relaxed">{item.desc}</p>
-                      </div>
+        <StaggerChildren className="space-y-6" stagger={0.1}>
+          {experiences.map((exp, idx) => (
+            <StaggerItem key={idx}>
+              <div className="glass-card rounded-2xl p-6 md:p-8 border border-white/10 hover:border-indigo-500/40 transition-all duration-300 shadow-sm">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4 border-b border-white/10 pb-4">
+                  <div>
+                    <h3 className="font-display font-bold text-2xl text-white">{exp.role}</h3>
+                    <div className="flex items-center gap-2 text-indigo-300 font-mono text-sm mt-1">
+                      <Briefcase size={15} />
+                      <span className="font-semibold text-slate-100">{exp.company}</span>
+                      <span className="text-slate-500">•</span>
+                      <span className="text-slate-400">{exp.type}</span>
                     </div>
-
-                    {/* Center dot icon */}
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-6 z-10">
-                      <div className="w-10 h-10 rounded-xl glass-card flex items-center justify-center border border-white/20 bg-surface shadow-lg">
-                        {(() => {
-                          const { Icon, color } = typeIcons[item.type] || typeIcons.learning;
-                          return <Icon size={18} className={color} />;
-                        })()}
-                      </div>
-                    </div>
-
-                    {/* Empty spacer for alternating layout */}
-                    <div className="hidden md:block flex-1" />
                   </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerChildren>
-        </div>
+                  <div className="flex flex-col md:items-end gap-1 font-mono text-xs text-slate-400">
+                    <div className="flex items-center gap-1.5 text-slate-300">
+                      <Calendar size={14} className="text-indigo-400" />
+                      <span>{exp.period}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-slate-400">
+                      <MapPin size={13} />
+                      <span>{exp.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="space-y-2.5 mb-5">
+                  {exp.highlights.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-slate-300 text-sm md:text-base leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-indigo mt-2 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {exp.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2.5 py-0.5 rounded-md text-xs font-mono text-slate-200 bg-white/[0.05] border border-white/10"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerChildren>
       </div>
     </section>
   );

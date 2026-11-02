@@ -1,38 +1,15 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { ArrowDown } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
+import { useRef } from 'react';
+import { ArrowDown, Mail } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { isCompactViewport } from '../../utils/perf';
+import { personalInfo } from '../../data/portfolio';
 
 // Interactive Developer Showcase Card
 function HeroVisual() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handle = (e) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 15,
-        y: (e.clientY / window.innerHeight - 0.5) * 15,
-      });
-    };
-    window.addEventListener('mousemove', handle, { passive: true });
-    return () => window.removeEventListener('mousemove', handle);
-  }, []);
-
   return (
     <div className="relative w-full max-w-md lg:max-w-lg">
-      {/* Ambient background glows */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-neon-indigo/20 via-neon-cyan/20 to-neon-violet/20 rounded-3xl blur-2xl opacity-50 pointer-events-none" />
-
-      {/* Main interactive window */}
-      <motion.div
-        className="relative glass-card rounded-2xl border border-white/10 shadow-2xl overflow-hidden p-6"
-        style={{
-          rotateX: mousePos.y * -0.6,
-          rotateY: mousePos.x * 0.6,
-        }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-      >
+      <div className="relative glass-card rounded-2xl border border-white/10 shadow-2xl overflow-hidden p-6">
         {/* Terminal Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
           <div className="flex items-center gap-2">
@@ -43,10 +20,10 @@ function HeroVisual() {
           <div className="font-mono text-xs text-slate-300 flex items-center gap-1.5">
             <span className="text-neon-indigo font-semibold">zeel.dev</span>
             <span>~</span>
-            <span className="text-neon-cyan">mern-stack</span>
+            <span className="text-neon-cyan">fullstack</span>
           </div>
           <div className="text-[10px] font-mono px-2 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 font-medium">
-            ONLINE
+            AVAILABLE
           </div>
         </div>
 
@@ -54,52 +31,57 @@ function HeroVisual() {
         <div className="flex items-center gap-4 mb-5 p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
           <img
             src="/images/zeel.jpg"
-            alt="Zeel Kadiya"
-            className="w-14 h-14 rounded-full ring-2 ring-neon-indigo/50 object-cover shrink-0"
+            alt="Zeel Mukeshkumar Kadiya"
+            className="w-16 h-16 rounded-xl ring-2 ring-neon-indigo/50 object-cover shrink-0"
           />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h3 className="font-display font-bold text-white text-base truncate">Zeel Kadiya</h3>
-              <span className="text-xs px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono font-medium">Full Stack</span>
+              <span className="text-[10px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono font-medium">GTU IT '26</span>
             </div>
-            <p className="text-xs text-slate-300 font-mono mt-0.5">MERN Stack Developer</p>
+            <p className="text-xs text-slate-300 font-mono mt-0.5">Full Stack Developer</p>
             <p className="text-[11px] text-neon-cyan font-mono mt-1 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
-              Building scalable web applications
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              Ahmedabad, Gujarat, India
             </p>
           </div>
         </div>
 
-        {/* Code Block / Live Config */}
+        {/* Live Config */}
         <div className="font-mono text-xs space-y-1.5 p-4 rounded-xl bg-void/90 border border-white/10 text-slate-200 overflow-x-auto leading-relaxed">
-          <div className="text-slate-500">// zeel.config.ts</div>
+          <div className="text-slate-500">// engineer.profile.ts</div>
           <div>
-            <span className="text-neon-violet font-semibold">const</span> <span className="text-neon-indigo font-semibold">developer</span> = &#123;
+            <span className="text-neon-violet font-semibold">const</span> <span className="text-neon-indigo font-semibold">zeel</span> = &#123;
+          </div>
+          <div className="pl-4">
+            <span className="text-slate-400">education:</span>{' '}
+            <span className="text-amber-300">'B.E. IT (GTU)'</span>,
           </div>
           <div className="pl-4">
             <span className="text-slate-400">coreStack:</span> [
-            <span className="text-emerald-300">'MongoDB'</span>,{' '}
-            <span className="text-emerald-300">'Express'</span>,{' '}
             <span className="text-emerald-300">'React'</span>,{' '}
-            <span className="text-emerald-300">'Node.js'</span>
+            <span className="text-emerald-300">'Node.js'</span>,{' '}
+            <span className="text-emerald-300">'MongoDB'</span>
             ],
           </div>
           <div className="pl-4">
-            <span className="text-slate-400">architecture:</span>{' '}
-            <span className="text-amber-300">'REST APIs & Scalable UI'</span>,
+            <span className="text-slate-400">internships:</span> [
+            <span className="text-cyan-300">'Innovexis.in'</span>,{' '}
+            <span className="text-cyan-300">'AnveshnaAI'</span>
+            ],
           </div>
           <div className="pl-4">
-            <span className="text-slate-400">status:</span>{' '}
-            <span className="text-neon-cyan">'Ready for Opportunities'</span>,
+            <span className="text-slate-400">specialty:</span>{' '}
+            <span className="text-indigo-300">'JWT Auth &amp; REST APIs'</span>,
           </div>
           <div>&#125;;</div>
         </div>
 
-        {/* Floating tech badges row */}
+        {/* Core Stack Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 mt-5 pt-4 border-t border-white/10">
-          <span className="text-xs font-mono text-slate-300 font-medium">Core Stack:</span>
+          <span className="text-xs font-mono text-slate-300 font-medium">Recent Work:</span>
           <div className="flex flex-wrap gap-1.5">
-            {['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind'].map((tech) => (
+            {['Innovexis.in', 'Wanderlust', 'REST APIs', 'Postman'].map((tech) => (
               <span
                 key={tech}
                 className="px-2.5 py-0.5 rounded text-xs font-mono text-slate-200 bg-white/10 border border-white/15"
@@ -109,7 +91,7 @@ function HeroVisual() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -129,10 +111,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       id="hero"
     >
-      {/* Background grid */}
       <div className="absolute inset-0 bg-grid opacity-100" />
-
-      {/* Hero radial glow */}
       <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
 
       {/* Main content */}
@@ -146,10 +125,10 @@ export default function Hero() {
             initial={enter}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: compact ? 0 : 0.6, delay: compact ? 0 : 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-mono text-neon-indigo/80 mb-6 border border-neon-indigo/20"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-mono text-neon-indigo/90 mb-6 border border-neon-indigo/20"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse-slow" />
-            Available for opportunities
+            GTU B.E. (IT) · Full Stack Developer
           </motion.div>
 
           <motion.h1
@@ -159,16 +138,25 @@ export default function Hero() {
             className="font-display text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
           >
             <span className="text-slate-900 dark:text-slate-100">Hi, I'm </span>
-            <span className="text-neon-indigo"> Zeel</span>
+            <span className="text-neon-indigo">{personalInfo.shortName}</span>
           </motion.h1>
 
           <motion.p
             initial={enter}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: compact ? 0 : 0.7, delay: compact ? 0 : 0.35 }}
-            className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed max-w-xl"
+            className="text-lg md:text-xl text-slate-300 mb-6 leading-relaxed max-w-xl"
           >
-            Full-stack developer. I build apps with React, Node.js, Express and MongoDB.
+            Full Stack Developer specializing in <strong className="text-white">React.js, Node.js, Express.js &amp; MongoDB</strong> with JWT authentication and RESTful APIs.
+          </motion.p>
+
+          <motion.p
+            initial={enter}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: compact ? 0 : 0.7, delay: compact ? 0 : 0.45 }}
+            className="text-sm md:text-base text-slate-400 mb-8 leading-relaxed max-w-xl"
+          >
+            Recent B.E. (Information Technology) graduate from Gujarat Technological University. Built production CRUD APIs at <span className="text-slate-200 font-medium">Innovexis.in</span> and built &amp; deployed <span className="text-slate-200 font-medium">Wanderlust</span>.
           </motion.p>
 
           <motion.div
@@ -182,11 +170,11 @@ export default function Hero() {
               className="btn-primary"
               id="view-work-cta"
             >
-              View My Work
+              View Projects
               <ArrowDown size={14} />
             </button>
             <a
-              href="https://github.com/zeel1409"
+              href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
@@ -195,23 +183,40 @@ export default function Hero() {
               <FaGithub size={14} />
               GitHub
             </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              <FaLinkedin size={14} />
+              LinkedIn
+            </a>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="btn-secondary"
+            >
+              <Mail size={14} />
+              Email
+            </a>
           </motion.div>
 
-          {/* Mini stats */}
+          {/* Key Metrics based on Resume */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.75 }}
-            className="flex gap-8 mt-10 pt-8 border-t border-white/10"
+            className="flex flex-wrap gap-6 md:gap-8 mt-10 pt-8 border-t border-white/10"
           >
             {[
-              { value: '12', label: 'Public Repos' },
+              { value: '2', label: 'Internships' },
               { value: 'MERN', label: 'Core Stack' },
-              { value: '2+', label: 'Major Full-Stack Apps' },
+              { value: '7.33', label: 'GTU CGPA' },
+              { value: '98/85', label: 'Lighthouse Score' },
             ].map(({ value, label }) => (
               <div key={label}>
                 <div className="font-display font-bold text-2xl text-white">{value}</div>
-                <div className="text-xs text-slate-300 font-mono mt-0.5">{label}</div>
+                <div className="text-xs text-slate-400 font-mono mt-0.5">{label}</div>
               </div>
             ))}
           </motion.div>
@@ -219,7 +224,7 @@ export default function Hero() {
 
         {/* Right: interactive developer visual */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="hidden lg:flex flex-1 items-center justify-end"
@@ -227,22 +232,6 @@ export default function Hero() {
         >
           <HeroVisual />
         </motion.div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600"
-      >
-        <span className="text-xs font-mono tracking-widest uppercase">scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-px h-10 bg-gradient-to-b from-neon-indigo/50 to-transparent"
-        />
       </motion.div>
     </section>
   );

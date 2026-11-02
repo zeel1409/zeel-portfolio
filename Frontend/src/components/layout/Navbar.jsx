@@ -4,8 +4,10 @@ import { useTheme } from '../../context/ThemeContext';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
 const navLinks = [
+  { label: 'Experience', href: '#experience' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -48,59 +50,46 @@ export default function Navbar() {
             <div className="keep-white w-8 h-8 rounded-lg bg-gradient-to-br from-neon-indigo to-neon-violet flex items-center justify-center text-white text-sm font-bold font-mono shadow-glow-sm">
               Z
             </div>
-            <span className="font-display font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-neon-indigo transition-colors">
-              zeel.dev
+            <span className="font-display font-bold text-lg text-white group-hover:text-neon-indigo transition-colors">
+              zeel<span className="text-neon-indigo">.dev</span>
             </span>
           </button>
 
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-1">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1 glass-card px-4 py-1.5 rounded-full border border-white/5">
             {navLinks.map((link) => (
-              <li key={link.href}>
-                <button
-                  onClick={() => handleNav(link.href)}
-                  className="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors rounded-lg hover:bg-indigo-50 dark:hover:bg-white/5 font-medium"
-                >
-                  {link.label}
-                </button>
-              </li>
+              <button
+                key={link.label}
+                onClick={() => handleNav(link.href)}
+                className="px-3.5 py-1.5 text-xs font-mono text-slate-400 hover:text-white transition-colors duration-200 rounded-full hover:bg-white/5"
+              >
+                {link.label}
+              </button>
             ))}
-          </ul>
+          </div>
 
-          {/* Right actions */}
-          <div className="flex items-center gap-3">
+          {/* Right Controls */}
+          <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 bg-white/80 dark:bg-transparent border border-slate-200 dark:border-transparent text-indigo-600 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/10 shadow-sm dark:shadow-none"
-              aria-label="Toggle theme"
-              id="theme-toggle"
+              className="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-400 hover:text-white transition-colors border border-white/5"
+              aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
             >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={theme}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                </motion.div>
-              </AnimatePresence>
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
 
             <a
-              href="/resume.pdf"
-              download
-              className="hidden md:inline-flex btn-primary text-xs px-4 py-2"
-              id="resume-download-nav"
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); handleNav('#contact'); }}
+              className="hidden sm:inline-flex items-center px-4 py-1.5 text-xs font-mono font-medium text-white rounded-lg bg-neon-indigo/20 border border-neon-indigo/40 hover:bg-neon-indigo/30 transition-all duration-200"
             >
-              Resume
+              Hire Me
             </a>
 
-            {/* Mobile menu toggle */}
+            {/* Mobile menu trigger */}
             <button
-              onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/10 transition-all"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden w-9 h-9 rounded-xl glass-card flex items-center justify-center text-slate-400 hover:text-white"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -109,7 +98,7 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -117,27 +106,28 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 inset-x-0 z-40 glass-card border-b border-white/5 md:hidden"
+            className="fixed inset-x-0 top-[72px] z-40 p-4 md:hidden"
           >
-            <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
+            <div className="glass-card rounded-2xl p-6 border border-white/10 shadow-2xl flex flex-col gap-2">
               {navLinks.map((link) => (
                 <button
-                  key={link.href}
+                  key={link.label}
                   onClick={() => handleNav(link.href)}
-                  className="text-left px-4 py-3 text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-indigo-50 dark:hover:bg-white/5 rounded-lg transition-all font-medium"
+                  className="w-full text-left px-4 py-3 text-sm font-mono text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors"
                 >
                   {link.label}
                 </button>
               ))}
-              <a
-                href="/resume.pdf"
-                download
-                className="btn-primary text-sm mt-2 justify-center"
-                onClick={() => setMobileOpen(false)}
-              >
-                Download Resume
-              </a>
-            </nav>
+              <div className="pt-2 border-t border-white/10 mt-2">
+                <a
+                  href="#contact"
+                  onClick={(e) => { e.preventDefault(); handleNav('#contact'); }}
+                  className="btn-primary w-full justify-center text-xs"
+                >
+                  Hire Me
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { ChapterLabel, FadeUp } from '../ui/AnimatedSection';
 import { Send, CheckCircle, AlertCircle, Mail, User, FileText, MessageSquare } from 'lucide-react';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
@@ -58,9 +59,9 @@ export default function Contact() {
   };
 
   const socialLinks = [
-    { label: 'GitHub', icon: '🐙', href: 'https://github.com/zeel1409', handle: '@zeel1409' },
-    { label: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/in/zeel-kadiya-5733a7349/', handle: 'in/zeel' },
-    { label: 'Email', icon: '📧', href: 'mailto:kadiyazeel209@gmail.com', handle: 'kadiyazeel209@gmail.com' },
+    { label: 'GitHub', icon: FaGithub, href: 'https://github.com/zeel1409', handle: '@zeel1409' },
+    { label: 'LinkedIn', icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/zeel-kadiya-5733a7349/', handle: 'in/zeel-kadiya' },
+    { label: 'Email', icon: Mail, href: 'mailto:kadiyazeel209@gmail.com', handle: 'kadiyazeel209@gmail.com' },
   ];
 
   return (
@@ -93,23 +94,28 @@ export default function Contact() {
             {/* Social links */}
             <FadeUp delay={0.2}>
               <div className="space-y-3">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 glass-card rounded-xl group border border-white/10 hover:border-indigo-500/40 transition-all duration-300"
-                  >
-                    <span className="text-2xl w-10 text-center">{link.icon}</span>
-                    <div>
-                      <div className="text-base font-semibold text-white group-hover:text-neon-indigo transition-colors">
-                        {link.label}
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 glass-card rounded-xl group border border-white/10 hover:border-indigo-500/40 transition-all duration-300"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-neon-indigo group-hover:border-indigo-500/30 transition-all shrink-0">
+                        <Icon size={18} />
                       </div>
-                      <div className="text-xs sm:text-sm font-mono text-slate-300">{link.handle}</div>
-                    </div>
-                  </a>
-                ))}
+                      <div>
+                        <div className="text-base font-semibold text-white group-hover:text-neon-indigo transition-colors">
+                          {link.label}
+                        </div>
+                        <div className="text-xs sm:text-sm font-mono text-slate-300">{link.handle}</div>
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
             </FadeUp>
 

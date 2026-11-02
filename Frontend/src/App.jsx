@@ -9,8 +9,10 @@ import ScrollProgress from './components/ui/ScrollProgress';
 import BootSequence from './components/chapters/BootSequence';
 import Hero from './components/chapters/Hero';
 
+const Experience = lazy(() => import('./components/chapters/Experience'));
 const Skills = lazy(() => import('./components/chapters/Skills'));
 const Projects = lazy(() => import('./components/chapters/Projects'));
+const Education = lazy(() => import('./components/chapters/Education'));
 const Contact = lazy(() => import('./components/chapters/Contact'));
 
 function ChapterDivider() {
@@ -32,9 +34,13 @@ function MainContent() {
         <Hero />
         <Suspense fallback={null}>
           <ChapterDivider />
+          <Experience />
+          <ChapterDivider />
           <Skills />
           <ChapterDivider />
           <Projects />
+          <ChapterDivider />
+          <Education />
           <ChapterDivider />
           <Contact />
         </Suspense>
